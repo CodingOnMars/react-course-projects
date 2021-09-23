@@ -8,6 +8,13 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [tours, setTours] = useState([]);
 
+  const removeTour = (id) => {
+    // If tour id does not match id, it will be return to newTours array.
+    // If it does not match, it will not be returned to newTours array
+    const newTours = tours.filter((tour) => tour.id !== id);
+    setTours(newTours);
+  };
+
   const fetchTours = async () => {
     // NOTE: when fetch loading set setLoading to true. In case if useState(false).
     // Technically, in our case, we don't need it here since we set up useState(true)
@@ -36,9 +43,24 @@ function App() {
     );
   }
 
+  // If tours array length is 0 (i.e., no tours left on the screen), display 'No tours left'
+  if (tours.length === 0) {
+    return (
+      <main>
+        <div className='title'>
+          <h2>no tours left</h2>
+          {/* On button click fetch tours from API and display them on the screen (in Tours component) */}
+          <button className='btn' onClick={fetchTours}>
+            Refresh
+          </button>
+        </div>
+      </main>
+    );
+  }
+
   return (
     <main>
-      <Tours tours={tours}/>
+      <Tours tours={tours} removeTour={removeTour} />
     </main>
   );
 }
