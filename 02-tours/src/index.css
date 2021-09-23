@@ -188,6 +188,9 @@ main {
   border-top-right-radius: var(--radius);
   border-top-left-radius: var(--radius);
 }
+.tour-title {
+  font-size: 1.4rem;
+}
 .tour-info {
   display: flex;
   justify-content: space-between;
@@ -209,8 +212,10 @@ main {
 .tour-price {
   color: var(--clr-primary-5);
   background: var(--clr-primary-10);
+  margin-right: 0.5rem;
   padding: 0.25rem 0.5rem;
   border-radius: var(--radius);
+  font-size: 1.2rem;
 }
 .single-tour footer {
   padding: 1.5rem 2rem;
