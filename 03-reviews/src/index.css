@@ -211,6 +211,8 @@ main {
 }
 .author {
   margin-bottom: 0.25rem;
+  font-size: 1.1rem;
+  text-transform: capitalize;
 }
 .job {
   margin-bottom: 0.5rem;
