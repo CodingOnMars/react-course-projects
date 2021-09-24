@@ -30,6 +30,18 @@ const Review = () => {
     });
   };
 
+  const randomPerson = () => {
+    let randomNumber = Math.floor(Math.random() * people.length);
+    // NOTE: Math.random could generate same number multiple times
+    // To avoid that and always get a new number we set up condition
+    // If random number is equal to current index, add 1
+    if (randomNumber === index) {
+      randomNumber = index + 1;
+    }
+    // console.log(randomNumber);
+    setIndex(checkNumber(randomNumber));
+  };
+
   return (
     <article className='review'>
       <div className='img-container'>
@@ -49,7 +61,9 @@ const Review = () => {
           <FaChevronRight />
         </button>
       </div>
-      <button className='random-btn'>suprise me</button>
+      <button className='random-btn' onClick={randomPerson}>
+        suprise me
+      </button>
     </article>
   );
 };
