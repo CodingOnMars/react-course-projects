@@ -4,9 +4,12 @@ Projects created during React courses.
 
 #### useState
 
-1. Birthday reminder 
+1. Birthday reminder
 
 #### useEffect and Conditional Rendering
 
 2. Tours
 
+3. Reviews
+
+4. Accordion
