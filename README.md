@@ -15,3 +15,5 @@ Projects created during React courses.
 4. Accordion
 
 5. Menu
+
+6. Tabs
