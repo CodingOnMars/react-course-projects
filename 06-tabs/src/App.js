@@ -66,8 +66,6 @@ function App() {
       </div>
     </section>
   );
-
-  return <h2>jobs</h2>;
 }
 
 export default App;
