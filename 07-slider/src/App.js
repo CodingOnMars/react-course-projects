@@ -7,6 +7,33 @@ function App() {
   const [people, setPeople] = useState(data);
   const [index, setIndex] = useState(0);
 
+  // Adding useEffect to properly show prev and next slides
+  useEffect(() => {
+    const lastIndex = people.length - 1;
+    // Show prev slide
+    if (index < 0) {
+      setIndex(lastIndex);
+    }
+    // Show first slide if no new slides left when clicking Next button
+    if (index > lastIndex) {
+      setIndex(0);
+    }
+  }, [index, people]);
+
+  // Autoplay
+  // Show next slide every 5sec 
+  useEffect(() => {
+    let slider = setInterval(() => {
+      setIndex(index + 1);
+    }, 5000);
+    /* 
+    !NOTE: We need to add cleanup function
+    otherwise every time we click prev/next buttons,
+    we'll invoke setInterval
+    */ 
+    return () => clearInterval(slider);
+  }, [index]);
+
   return (
     <section className='section'>
       <div className='title'>
@@ -47,10 +74,10 @@ function App() {
             </article>
           );
         })}
-        <button className='prev'>
+        <button className='prev' onClick={() => setIndex(index - 1)}>
           <FiChevronLeft />
         </button>
-        <button className='next'>
+        <button className='next' onClick={() => setIndex(index + 1)}>
           <FiChevronRight />
         </button>
       </div>
