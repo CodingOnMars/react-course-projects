@@ -17,3 +17,5 @@ Projects created during React courses.
 5. Menu
 
 6. Tabs
+
+7. Slider
