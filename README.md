@@ -23,3 +23,4 @@ Projects created during React courses.
 #### Forms
 
 8. Lorem Ipsum Generator
+9. Color generator
