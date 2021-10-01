@@ -12,14 +12,28 @@ const SingleColor = ({ rgb, weight, index, hexColor }) => {
   // String with hex value
   const hexValue = `#${hexColor ? hexColor : hex}`;
 
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setAlert(false);
+    }, 3000);
+    return () => clearTimeout(timeout);
+  }, [alert]);
+
   return (
     <article
       // Make text white for dark backgrounds
       className={`color ${index > 10 && 'color-light'}`}
       style={{ backgroundColor: `rgb(${bcg})` }}
+      // When clicking on color item, show alert text
+      // and copy hex value to clipboard
+      onClick={() => {
+        setAlert(true);
+        navigator.clipboard.writeText(hexValue);
+      }}
     >
       <p className='percent-value'>{weight}%</p>
       <p className='color-value'>{hexValue}</p>
+      {alert && <p className='alert'>Copied to clipboard</p>}
     </article>
   );
 };
