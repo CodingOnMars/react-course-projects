@@ -11,6 +11,17 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // Check if the value is empty
+    if (!name) {
+      // Display alert
+    } else if (name && isEditing) {
+      // Edit
+    } else {
+      // Show alert
+      const newItem = { id: new Date().getTime().toString(), title: name };
+      setList([...list, newItem]);
+      setName('');
+    }
   };
 
   return (
@@ -24,17 +35,19 @@ function App() {
             type='text'
             placeholder='e.g. spinach'
             value={name}
-            onChange={(e) => setName(e.target)}
+            onChange={(e) => setName(e.target.value)}
           />
           <button className='submit-btn' type='submit'>
             {isEditing ? 'Edit' : 'Submit'}
           </button>
         </div>
       </form>
-      <div className='grocery-container'>
-        <List />
-        <button className='clear-btn'>Clear items</button>
-      </div>
+      {list.length > 0 && (
+        <div className='grocery-container'>
+          <List items={list} />
+          <button className='clear-btn'>Clear items</button>
+        </div>
+      )}
     </section>
   );
 }
