@@ -2,9 +2,19 @@ import React, { useState, useEffect } from 'react';
 import List from './List';
 import Alert from './Alert';
 
+// Store items in session storage
+const getSessionStorage = () => {
+  let list = sessionStorage.getItem('list');
+  if (list) {
+    return JSON.parse(sessionStorage.getItem('list'));
+  } else {
+    return [];
+  }
+};
+
 function App() {
   const [name, setName] = useState('');
-  const [list, setList] = useState([]);
+  const [list, setList] = useState(getSessionStorage());
   const [isEditing, setIsEditing] = useState(false);
   const [editID, setEditID] = useState(null);
   const [alert, setAlert] = useState({
@@ -64,6 +74,10 @@ function App() {
     setEditID(id);
     setName(specificItem.title);
   };
+
+  useEffect(() => {
+    sessionStorage.setItem('list', JSON.stringify(list));
+  }, [list]);
 
   return (
     <section className='section-center'>
