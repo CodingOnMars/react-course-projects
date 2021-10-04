@@ -23,6 +23,7 @@ function App() {
       // Edit
     } else {
       // Show alert
+      showAlert(true, 'success', 'Item added to the list');
       const newItem = { id: new Date().getTime().toString(), title: name };
       setList([...list, newItem]);
       // Clear input value
@@ -32,6 +33,11 @@ function App() {
 
   const showAlert = (show = false, type = '', msg = '') => {
     setAlert({ show, type, msg });
+  };
+
+  const clearList = () => {
+    showAlert(true, 'danger', 'List cleared');
+    setList([]);
   };
 
   return (
@@ -55,7 +61,9 @@ function App() {
       {list.length > 0 && (
         <div className='grocery-container'>
           <List items={list} />
-          <button className='clear-btn'>Clear items</button>
+          <button className='clear-btn' onClick={clearList}>
+            Clear items
+          </button>
         </div>
       )}
     </section>
