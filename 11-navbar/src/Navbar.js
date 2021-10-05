@@ -5,6 +5,31 @@ import logo from './logo.svg';
 
 const Navbar = () => {
   const [showLinks, setShowLinks] = useState(false);
+  const linksContainerRef = useRef(null);
+  const linksRef = useRef(null);
+
+  useEffect(() => {
+    // Check height for ul with links
+    const linksHeight = linksRef.current.getBoundingClientRect().height;
+    // LINK: https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect
+    // console.log(linksHeight);
+
+    // Adjust height of the container depending on links height
+    /* NOTE: since we use inline styles, we need to add !important to CSS:
+    
+    .links-container {
+    height: auto !important;
+    }
+
+    otherwise our links will not be displayed at width >= 800px
+
+    */
+    if (showLinks) {
+      linksContainerRef.current.style.height = `${linksHeight}px`;
+    } else {
+      linksContainerRef.current.style.height = '0px';
+    }
+  }, [showLinks]);
 
   return (
     <nav>
@@ -52,6 +77,18 @@ const Navbar = () => {
           </ul>
         </div>
         */}
+        <div className='links-container' ref={linksContainerRef}>
+          <ul className='links' ref={linksRef}>
+            {links.map((link) => {
+              const { id, url, text } = link;
+              return (
+                <li key={id}>
+                  <a href={url}>{text}</a>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
         <ul className='social-icons'>
           {social.map((link) => {
             const { id, url, icon } = link;
