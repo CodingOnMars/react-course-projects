@@ -34,7 +34,12 @@ const Navbar = () => {
           </div>
         )}
         */}
-        <div className='links-container show-container'>
+        {/* NOTE: Toggle navbar by adding CSS class. This approach add nice animation with the help of CSS. However, in CSS container height is hardcoded to 10rem. That means that adding or removing new links will also require to change CSS. So, this appoach is suboptimnal 
+        <div
+          className={`${
+            showLinks ? 'links-container show-container' : 'links-container'
+          }`}
+        >
           <ul className='links'>
             {links.map((link) => {
               const { id, url, text } = link;
@@ -46,6 +51,7 @@ const Navbar = () => {
             })}
           </ul>
         </div>
+        */}
         <ul className='social-icons'>
           {social.map((link) => {
             const { id, url, icon } = link;
