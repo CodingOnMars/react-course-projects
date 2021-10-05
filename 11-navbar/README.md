@@ -10,6 +10,6 @@ Third way allows toggle navbar and what is important to calculate height for con
 
 #### Screenshots
 
-![Main page](https://github.com/CodingOnMars/react-course-projects/blob/main/screenshots/grocery-bud-1.webp)
+![Main page](https://github.com/CodingOnMars/react-course-projects/blob/main/screenshots/navbar-1.webp)
 
-![Opened navbar](https://github.com/CodingOnMars/react-course-projects/blob/main/screenshots/grocery-bud-2.webp)
+![Opened navbar](https://github.com/CodingOnMars/react-course-projects/blob/main/screenshots/navbar-2.webp)
