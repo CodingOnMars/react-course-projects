@@ -4,8 +4,38 @@ const AppContext = React.createContext();
 
 // NOTE: make sure to display children
 const AppProvider = ({ children }) => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openSidebar = () => {
+    setIsSidebarOpen(true);
+  };
+
+  const closeSidebar = () => {
+    setIsSidebarOpen(false);
+  };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
-    <AppContext.Provider value='test value'>{children}</AppContext.Provider>
+    <AppContext.Provider
+      value={{
+        isModalOpen,
+        isSidebarOpen,
+        openModal,
+        closeModal,
+        openSidebar,
+        closeSidebar,
+      }}
+    >
+      {children}
+    </AppContext.Provider>
   );
 };
 
