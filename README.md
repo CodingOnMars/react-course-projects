@@ -29,3 +29,7 @@ Projects created during React courses.
 #### useRef
 
 11. Navbar
+
+#### useContext
+
+12. Modal and sidebar
