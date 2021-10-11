@@ -32,4 +32,5 @@ Projects created during React courses.
 
 #### useContext
 
-12. Modal and sidebar
+12. Sidebar and modal
+13. Stripe submenus
