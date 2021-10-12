@@ -32,6 +32,17 @@ const AppProvider = ({ children }) => {
     dispatch({ type: 'DECREASE', payload: id });
   };
 
+  const fetchData = async () => {
+    dispatch({ type: 'LOADING' });
+    const response = await fetch(url);
+    const cart = await response.json();
+    dispatch({ type: 'DISPLAY_ITEMS', payload: cart });
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   // NOTE: this useEffect will run every time we do changes in the cart (increase, decrease, remove items)
   useEffect(() => {
     dispatch({ type: 'GET_TOTALS' });
