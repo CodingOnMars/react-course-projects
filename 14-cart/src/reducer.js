@@ -3,6 +3,13 @@ const reducer = (state, action) => {
     return { ...state, cart: [] };
   }
 
+  if (action.type === 'REMOVE') {
+    return {
+      ...state,
+      cart: state.cart.filter((cartItem) => cartItem.id !== action.payload),
+    };
+  }
+
   return state;
 };
 
