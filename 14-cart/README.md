@@ -1,3 +1,3 @@
 ## Shopping Cart
 
-> A shopping cart that allows to add and remove goods. In addition you can clear cart.
+> A shopping cart that allows to increase, decrease and remove items. In addition you can clear cart.

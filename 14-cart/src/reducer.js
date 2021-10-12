@@ -34,6 +34,31 @@ const reducer = (state, action) => {
     return { ...state, cart: tempCart };
   }
 
+  if (action.type === 'GET_TOTALS') {
+    let { total, amount } = state.cart.reduce(
+      (cartTotal, cartItem) => {
+        const { price, amount } = cartItem;
+        // console.log(price, amount); // return item price and current amount
+
+        // Calculate total price
+        const itemTotal = price * amount;
+        // Display total price of all items;
+        cartTotal.total += itemTotal;
+        // Display current number of items in cart icon
+        cartTotal.amount += amount;
+        return cartTotal;
+      },
+      {
+        total: 0,
+        amount: 0,
+      }
+    );
+    // Limit amount of numbers returned after dot to 2 digits
+    total = parseFloat(total.toFixed(2));
+
+    return { ...state, total, amount };
+  }
+
   return state;
 };
 
