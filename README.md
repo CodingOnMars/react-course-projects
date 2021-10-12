@@ -34,3 +34,7 @@ Projects created during React courses.
 
 12. Sidebar and modal
 13. Stripe submenus
+
+#### useReducer and useContext
+
+14. Cart
