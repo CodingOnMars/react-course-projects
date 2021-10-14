@@ -7,7 +7,7 @@ const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState('c');
+  const [searchTerm, setSearchTerm] = useState('p');
   const [cocktails, setCocktails] = useState([]);
 
   const fetchDrinks = async () => {
