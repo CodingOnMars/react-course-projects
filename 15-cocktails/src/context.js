@@ -10,7 +10,8 @@ const AppProvider = ({ children }) => {
   const [searchTerm, setSearchTerm] = useState('p');
   const [cocktails, setCocktails] = useState([]);
 
-  const fetchDrinks = async () => {
+  // NOTE: we useCallback() hook to avoid infinite loop when we add fetchDrinks dependency to useEffect() hook and to call fetchDrinks only if search criteria was changed ([searchTerm] dependency)
+  const fetchDrinks = useCallback(async () => {
     // Show loading animation every time we fetch data from API
     setLoading(true);
     try {
@@ -39,11 +40,11 @@ const AppProvider = ({ children }) => {
       console.log(error);
       setLoading(false);
     }
-  };
+  }, [searchTerm]);
 
   useEffect(() => {
     fetchDrinks();
-  }, [searchTerm]);
+  }, [searchTerm, fetchDrinks]);
 
   return (
     <AppContext.Provider value={{ loading, cocktails, setSearchTerm }}>
