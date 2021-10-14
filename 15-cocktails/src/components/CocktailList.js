@@ -5,6 +5,7 @@ import { useGlobalContext } from '../context';
 
 const CocktailList = () => {
   const { cocktails, loading } = useGlobalContext();
+  // console.log(cocktails); // if fetch was successful returns an array with 25 objects that contain data about cocktails (id, name, image, info, glass)
 
   if (loading) {
     return <Loading />;
