@@ -2,7 +2,9 @@ import { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 
 function App() {
-  const [markdown, setMarkdown] = useState('## Markdown preview');
+  const [markdown, setMarkdown] = useState(
+    '### Markdown preview. Type or copy text in markdown to see how it looks.'
+  );
 
   return (
     <main>
@@ -12,7 +14,9 @@ function App() {
           value={markdown}
           onChange={(e) => setMarkdown(e.target.value)}
         ></textarea>
-        <article className='result'>{markdown}</article>
+        <article className='result'>
+          <ReactMarkdown>{markdown}</ReactMarkdown>
+        </article>
       </section>
     </main>
   );
