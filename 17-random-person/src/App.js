@@ -53,7 +53,14 @@ function App() {
   }, []);
 
   const handleValue = (e) => {
-    console.log(e.target);
+    // console.log(e.target);
+    if (e.target.classList.contains('icon')) {
+      const newValue = e.target.dataset.label;
+      // console.log(person);
+      // console.log(newValue);
+      setTitle(newValue);
+      setValue(person[newValue]);
+    }
   };
 
   return (
@@ -70,25 +77,41 @@ function App() {
           <p className='user-title'>My {title} is</p>
           <p className='user-value'>{value}</p>
           <div className='values-list'>
-            <button className='icon' data-label='name' onClick={handleValue}>
+            <button
+              className='icon'
+              data-label='name'
+              onMouseOver={handleValue}
+            >
               <FaUser />
             </button>
-            <button className='icon' data-label='email' onClick={handleValue}>
+            <button
+              className='icon'
+              data-label='email'
+              onMouseOver={handleValue}
+            >
               <FaEnvelopeOpen />
             </button>
-            <button className='icon' data-label='age' onClick={handleValue}>
+            <button className='icon' data-label='age' onMouseOver={handleValue}>
               <FaCalendarTimes />
             </button>
-            <button className='icon' data-label='street' onClick={handleValue}>
+            <button
+              className='icon'
+              data-label='street'
+              onMouseOver={handleValue}
+            >
               <FaMap />
             </button>
-            <button className='icon' data-label='phone' onClick={handleValue}>
+            <button
+              className='icon'
+              data-label='phone'
+              onMouseOver={handleValue}
+            >
               <FaPhone />
             </button>
             <button
               className='icon'
               data-label='password'
-              onClick={handleValue}
+              onMouseOver={handleValue}
             >
               <FaLock />
             </button>
