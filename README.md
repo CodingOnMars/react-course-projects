@@ -47,3 +47,4 @@ Projects created during React courses.
 
 16. Markdown preview
 17. Random person
+18. Pagination
