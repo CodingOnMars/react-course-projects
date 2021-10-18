@@ -1,9 +1,25 @@
-import logo from './logo.svg';
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
+import { useFetch } from './useFetch';
 import Follower from './Follower';
 
 function App() {
-  return <h2>Pagination</h2>;
+  const { loading, data } = useFetch();
+
+  return (
+    <main>
+      <div className='section-title'>
+        <h1>{loading ? 'Loading...' : 'Pagination'}</h1>
+        <div className='underline'></div>
+      </div>
+      <div className='followers'>
+        <div className='container'>
+          {data.map((follower) => {
+            return <Follower key={follower.id} {...follower}></Follower>;
+          })}
+        </div>
+      </div>
+    </main>
+  );
 }
 
 export default App;
