@@ -6,10 +6,35 @@ const reducer = (state, action) => {
     return { ...state, cart: [] };
   }
   if (action.type === DECREASE) {
-    console.log('you decreased amount');
+    let tempCart = [];
+
+    if (action.payload.amount === 1) {
+      tempCart = state.cart.filter(
+        (cartItem) => cartItem.id !== action.payload.id
+      );
+    } else {
+      tempCart = state.cart.map((cartItem) => {
+        if (cartItem.id === action.payload.id) {
+          cartItem = { ...cartItem, amount: cartItem.amount - 1 };
+        }
+
+        return cartItem;
+      });
+    }
+
+    return { ...state, cart: tempCart };
   }
   if (action.type === INCREASE) {
-    console.log('you increase amount');
+    let tempCart = state.cart.map((cartItem) => {
+      // console.log(cartItem); // returns 3 items with unique values
+
+      if (cartItem.id === action.payload.id) {
+        cartItem = { ...cartItem, amount: cartItem.amount + 1 };
+      }
+
+      return cartItem;
+    });
+    return { ...state, cart: tempCart };
   }
   if (action.type === REMOVE) {
     // console.log(action.payload.id);
