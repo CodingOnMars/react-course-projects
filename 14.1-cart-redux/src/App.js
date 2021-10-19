@@ -1,8 +1,8 @@
 // Components
 import Navbar from './components/Navbar';
 import CartContainer from './components/CartContainer';
-// Items
-import cartItems from './cart-items';
+// Items were moved to reducer
+// import cartItems from './cart-items';
 
 /*
 
@@ -39,7 +39,12 @@ import reducer from './reducer';
 */
 import { Provider } from 'react-redux';
 
-// Initial store
+/* 
+NOTE: when we work with a larger app, we split reducer to separate files and start to combine them
+
+This code stays for reference and it was moved to reducer
+
+Initial store
 const initialStore = {
   cart: cartItems,
   total: 12,
@@ -47,6 +52,13 @@ const initialStore = {
 };
 
 const store = createStore(reducer, initialStore);
+
+*/
+
+const store = createStore(
+  reducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 function App() {
   return (

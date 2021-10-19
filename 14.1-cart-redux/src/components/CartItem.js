@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 // import { INCREASE, DECREASE, REMOVE } from '../actions';
 
 // replaced increase/decrease actions with toggle_amount
-import { REMOVE, TOGGLE_AMOUNT } from '../actions';
+import { removeItem, toggleAmount } from '../actions';
 
 const CartItem = ({
   img,
@@ -61,14 +61,21 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
   // NOTE: we must use a fucntion to dispatch type, so the action will happen only if user click on Remove button. Otherwise action will fire on page load (in our case 3 times, because we have 3 items in the cart)
   return {
-    remove: () => dispatch({ type: REMOVE, payload: { id } }),
+    // NOTE: we replaced REMOVE with removeItem
+    // remove: () => dispatch({ type: REMOVE, payload: { id } }),
+
+    // NOTE: action creator is useful when we use same functionality multiple times and alows us to avoid bugs while repeating code
+    remove: () => dispatch(removeItem(id)),
 
     // NOTE: replaced increase/decrease actions with toggle_amount
     // increase: () => dispatch({ type: INCREASE, payload: { id } }),
     // decrease: () => dispatch({ type: DECREASE, payload: { id, amount } }),
 
-    toggle: (toggle) =>
-      dispatch({ type: TOGGLE_AMOUNT, payload: { id, toggle } }),
+    // NOTE: we replaced TOGGLE_AMOUNT with toggleItem
+    // toggle: (toggle) =>
+    //   dispatch({ type: TOGGLE_AMOUNT, payload: { id, toggle } }),
+
+    toggle: (toggle) => dispatch(toggleAmount(id, toggle)),
   };
 };
 
