@@ -29,22 +29,31 @@ import cartItems from './cart-items';
 
 import { createStore } from 'redux';
 import reducer from './reducer';
+/* NOTES: 
+
+1. react-redux: Provider - wraps app, Connect - used in components;
+
+2. Each component wrapped into Provider can access store and dispatch methods
+
+
+*/
+import { Provider } from 'react-redux';
 
 // Initial store
 const initialStore = {
   cart: cartItems,
-  total: 0,
-  amount: 0,
+  total: 12,
+  amount: 5,
 };
 
 const store = createStore(reducer, initialStore);
 
 function App() {
   return (
-    <main>
+    <Provider store={store}>
       <Navbar />
-      <CartContainer cart={cartItems} />
-    </main>
+      <CartContainer />
+    </Provider>
   );
 }
 

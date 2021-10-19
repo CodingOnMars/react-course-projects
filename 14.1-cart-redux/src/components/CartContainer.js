@@ -1,6 +1,7 @@
 import CartItem from './CartItem';
+import { connect } from 'react-redux';
 
-const CartContainer = ({ cart = [] }) => {
+const CartContainer = ({ cart = [], total }) => {
   if (cart.length === 0) {
     return (
       <section className='cart'>
@@ -26,7 +27,7 @@ const CartContainer = ({ cart = [] }) => {
         <div className='cart-total'>
           <h4>
             total
-            <span>$0.00</span>
+            <span>${total}</span>
           </h4>
         </div>
         <button className='btn clear-btn'>Clear cart</button>
@@ -35,4 +36,10 @@ const CartContainer = ({ cart = [] }) => {
   );
 };
 
-export default CartContainer;
+// NOTE: instead of store we could use any name. Just a showcase that we can use names other than state
+const mapStateToProps = (store) => {
+  const { cart, total } = store;
+  return { cart, total };
+};
+
+export default connect(mapStateToProps)(CartContainer);
