@@ -1,6 +1,25 @@
-import { DECREASE, INCREASE } from './actions';
+import { DECREASE, INCREASE, CLEAR_CART, REMOVE } from './actions';
 
 const reducer = (state, action) => {
+  // If statement
+  if (action.type === CLEAR_CART) {
+    return { ...state, cart: [] };
+  }
+  if (action.type === DECREASE) {
+    console.log('you decreased amount');
+  }
+  if (action.type === INCREASE) {
+    console.log('you increase amount');
+  }
+  if (action.type === REMOVE) {
+    // console.log(action.payload.id);
+
+    // Return cartItem if its id does not match payload.id
+    return {
+      ...state,
+      cart: state.cart.filter((cartItem) => cartItem.id !== action.payload.id),
+    };
+  }
   return state;
 };
 
@@ -64,5 +83,15 @@ const store = createStore(reducer, initialStore);
 store.dispatch({ type: DECREASE });
 store.dispatch({ type: INCREASE });
 console.log(store.getState()); // returns initial state, in our example, {count: 0}
+
+  // NOTE: we can either use if or switch statements
+
+  Switch statement
+  switch (action.type) {
+    case CLEAR_CART:
+      return { ...state, cart: [] };
+    default:
+      return state;
+  }
 
 */

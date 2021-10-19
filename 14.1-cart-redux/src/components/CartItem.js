@@ -1,11 +1,16 @@
-const CartItem = ({ img, title, price, amount }) => {
+import { connect } from 'react-redux';
+import { INCREASE, DECREASE, REMOVE } from '../actions';
+
+const CartItem = ({ img, title, price, amount, remove }) => {
   return (
     <div className='cart-item'>
       <img src={img} alt={title} />
       <div>
         <h4>{title}</h4>
         <h4 className='item-price'>${price}</h4>
-        <button className='remove-btn'>Remove</button>
+        <button className='remove-btn' onClick={() => remove()}>
+          Remove
+        </button>
       </div>
       <div>
         <button className='amount-btn'>
@@ -24,4 +29,13 @@ const CartItem = ({ img, title, price, amount }) => {
   );
 };
 
-export default CartItem;
+const mapDispatchToProps = (dispatch, ownProps) => {
+  // console.log(ownProps); // returns unique values for each item in the cart
+
+  const { id } = ownProps;
+
+  // NOTE: we must use a fucntion to dispatch type, so the action will happen only if user click on Remove button. Otherwise action will fire on page load (in our case 3 times, because we have 3 items in the cart)
+  return { remove: () => dispatch({ type: REMOVE, payload: { id } }) };
+};
+
+export default connect(null, mapDispatchToProps)(CartItem);
