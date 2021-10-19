@@ -39,6 +39,10 @@ Projects created during React courses.
 
 14. Cart
 
+#### Redux
+
+14.1 Cart-redux
+
 #### React router and useCallback
 
 15. Cocktails
