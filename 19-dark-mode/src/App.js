@@ -2,12 +2,24 @@ import { useState, useEffect } from 'react';
 import data from './data';
 import Article from './Article';
 
+// If there is a value in sessionStorage, use it
+// If not, use light-theme as default value
+const getStorageTheme = () => {
+  let theme = 'light-theme';
+
+  if (sessionStorage.getItem('theme')) {
+    theme = sessionStorage.getItem('theme');
+  }
+  return theme;
+};
+
 function App() {
-  const [theme, setTheme] = useState('light-theme');
+  const [theme, setTheme] = useState(getStorageTheme());
 
   useEffect(() => {
     // console.log(document.documentElement); // returns the whole html tag
     document.documentElement.className = theme;
+    sessionStorage.setItem('theme', theme);
   }, [theme]);
 
   const toggleTheme = () => {
