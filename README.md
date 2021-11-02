@@ -53,3 +53,4 @@ Projects created during React courses.
 17. Random person
 18. Pagination
 19. Dark mode
+20. Movies DB
